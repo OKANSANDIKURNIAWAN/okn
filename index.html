@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fungsi Komposisi — Matematika Kelas 11</title>
 
-    <!-- Fonts: Syne (display) + DM Sans (body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -13,7 +12,6 @@
       rel="stylesheet"
     />
 
-    <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script>
@@ -83,7 +81,6 @@
     </script>
 
     <style>
-      /* ── Base ── */
       *,
       *::before,
       *::after {
@@ -107,7 +104,6 @@
         font-family: "Syne", sans-serif;
       }
 
-      /* ── Noise texture overlay for hero ── */
       .noise-bg::after {
         content: "";
         position: absolute;
@@ -117,7 +113,6 @@
         opacity: 0.4;
       }
 
-      /* ── Scroll reveal ── */
       .reveal {
         opacity: 0;
         transform: translateY(28px);
@@ -130,15 +125,21 @@
         transform: none;
       }
 
-      /* ── Math styling ── */
       .math-display {
         font-family: "Syne", sans-serif;
         font-style: italic;
       }
 
-      /* ── Machine card ── */
       .machine-card {
-        border: 1.5px solid #e0ded9;
+        background: rgba(255, 255, 255, 0.85);
+
+        backdrop-filter: blur(12px);
+
+        border: 1px solid rgba(255, 255, 255, 0.5);
+
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+
+        transition: 0.35s;
         border-radius: 20px;
         background: #ffffff;
         transition:
@@ -155,7 +156,6 @@
         border-color: #9bb5d0;
       }
 
-      /* ── Connector arrow ── */
       .arrow-pipe {
         display: flex;
         align-items: center;
@@ -176,21 +176,17 @@
         animation-delay: 0.4s;
       }
 
-      /* ── Input range custom ── */
       input[type="range"] {
-        /* stylelint-disable */
         -webkit-appearance: none;
-        /* stylelint-enable */
         height: 4px;
         border-radius: 99px;
         background: #e0ded9;
         outline: none;
         cursor: pointer;
+        width: 100%;
       }
       input[type="range"]::-webkit-slider-thumb {
-        /* stylelint-disable */
         -webkit-appearance: none;
-        /* stylelint-enable */
         width: 18px;
         height: 18px;
         border-radius: 50%;
@@ -204,7 +200,6 @@
         box-shadow: 0 0 0 5px rgba(76, 122, 97, 0.25);
       }
 
-      /* ── Number chip animating ── */
       .num-chip {
         display: inline-flex;
         align-items: center;
@@ -222,7 +217,6 @@
           transform 0.2s;
       }
 
-      /* ── Flow visualizer ── */
       .flow-step {
         display: flex;
         flex-direction: column;
@@ -239,7 +233,6 @@
         transform: none;
       }
 
-      /* ── Tag badge ── */
       .badge {
         display: inline-flex;
         align-items: center;
@@ -252,7 +245,6 @@
         border-radius: 99px;
       }
 
-      /* ── Section divider ── */
       .section-rule {
         height: 1px;
         background: linear-gradient(90deg, transparent, #c8c6c0, transparent);
@@ -260,7 +252,6 @@
         max-width: 600px;
       }
 
-      /* ── Sticky nav ── */
       #topnav {
         transition:
           background 0.3s,
@@ -273,17 +264,18 @@
         border-bottom: 1px solid #e0ded9;
       }
 
-      /* ── Tab system ── */
       .tab-btn {
-        padding: 8px 20px;
+        padding: 8px 16px;
         border-radius: 99px;
-        font-size: 0.875rem;
+        font-size: 0.8125rem;
         font-weight: 500;
         cursor: pointer;
         border: 1.5px solid transparent;
         background: transparent;
         color: #6b6b6b;
         transition: all 0.25s;
+        white-space: nowrap;
+        text-align: center;
       }
       .tab-btn.active-tab {
         background: #0d0d0d;
@@ -295,7 +287,6 @@
         color: #0d0d0d;
       }
 
-      /* ── Result highlight ── */
       .result-box {
         background: linear-gradient(135deg, #eaf2ec 0%, #e8eff7 100%);
         border: 1.5px solid #a8c5b3;
@@ -307,87 +298,6 @@
         border-color: #dfa58c;
       }
 
-      /* ── Responsive tweaks ── */
-      @media (max-width: 640px) {
-        .hero-title {
-          font-size: 2.8rem;
-        }
-        .machine-row {
-          flex-direction: column;
-        }
-      }
-
-      /* ── Keripik animation helpers ── */
-      @keyframes potato-transform {
-        0% {
-          content: "🥔";
-        }
-        33% {
-          content: "🔪";
-        }
-        66% {
-          content: "🥜";
-        }
-        100% {
-          content: "🍟";
-        }
-      }
-
-      .process-emoji {
-        font-size: 2.5rem;
-        display: inline-block;
-        transition:
-          transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
-          opacity 0.3s;
-      }
-      .process-emoji.transform-in {
-        transform: scale(1.3);
-      }
-
-      /* ── Glowing number in flow ── */
-      @keyframes glow-pulse {
-        0%,
-        100% {
-          box-shadow: 0 0 0 0 rgba(76, 122, 97, 0);
-        }
-        50% {
-          box-shadow: 0 0 0 8px rgba(76, 122, 97, 0.15);
-        }
-      }
-      .num-chip.glowing {
-        animation: glow-pulse 1s ease-in-out 3;
-      }
-
-      /* ── Progress bar for analogy ── */
-      .progress-track {
-        height: 3px;
-        background: #e0ded9;
-        border-radius: 99px;
-        overflow: hidden;
-      }
-      .progress-fill {
-        height: 100%;
-        background: #4c7a61;
-        border-radius: 99px;
-        transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        width: 0%;
-      }
-
-      /* ── Comparison section ── */
-      .comparison-card {
-        border: 1.5px solid #e0ded9;
-        border-radius: 20px;
-        background: #fff;
-        padding: 28px;
-        transition: all 0.3s;
-      }
-      .comparison-card:hover {
-        border-color: #a8c5b3;
-        transform: translateY(-3px);
-        box-shadow: 0 12px 40px rgba(76, 122, 97, 0.08);
-      }
-
-      /* ── Info callout ── */
       .callout {
         border-left: 3px solid #4c7a61;
         background: #eaf2ec;
@@ -403,19 +313,6 @@
         background: #e8eff7;
       }
 
-      /* ── Background effects ── */
-      body::before {
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        pointer-events: none;
-        z-index: 1;
-      }
-
-      /* Fine grain/noise */
       body::after {
         content: "";
         position: fixed;
@@ -430,7 +327,6 @@
         mix-blend-mode: overlay;
       }
 
-      /* Subtle grid pattern - using SVG background */
       body {
         background-image:
           linear-gradient(0deg, rgba(107, 107, 107, 0.02) 1px, transparent 1px),
@@ -439,7 +335,6 @@
         background-position: 0 0;
       }
 
-      /* Moving dots animation */
       @keyframes moving-dots {
         0% {
           transform: translateX(-200px) translateY(-200px);
@@ -458,7 +353,6 @@
         }
       }
 
-      /* Shifting gradient animation */
       @keyframes gradient-shift {
         0% {
           background-position: 0% 50%;
@@ -471,7 +365,46 @@
         }
       }
 
-      /* Pseudo-element for moving dots */
+      @keyframes glow-pulse {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 rgba(76, 122, 97, 0);
+        }
+        50% {
+          box-shadow: 0 0 0 8px rgba(76, 122, 97, 0.15);
+        }
+      }
+      .num-chip.glowing {
+        animation: glow-pulse 1s ease-in-out 3;
+      }
+
+      .progress-track {
+        height: 3px;
+        background: #e0ded9;
+        border-radius: 99px;
+        overflow: hidden;
+      }
+      .progress-fill {
+        height: 100%;
+        background: #4c7a61;
+        border-radius: 99px;
+        transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        width: 0%;
+      }
+
+      .comparison-card {
+        border: 1.5px solid #e0ded9;
+        border-radius: 20px;
+        background: #fff;
+        padding: 28px;
+        transition: all 0.3s;
+      }
+      .comparison-card:hover {
+        border-color: #a8c5b3;
+        transform: translateY(-3px);
+        box-shadow: 0 12px 40px rgba(76, 122, 97, 0.08);
+      }
+
       html::before {
         content: "";
         position: fixed;
@@ -496,7 +429,6 @@
         animation: moving-dots 30s linear infinite;
       }
 
-      /* Subtle shifting gradient overlay */
       html::after {
         content: "";
         position: fixed;
@@ -518,26 +450,223 @@
         z-index: 0;
       }
 
-      /* Ensure content sits above background effects */
       body > * {
         position: relative;
         z-index: 3;
+      }
+
+      /* ═══════════════════════════════════════════
+         MOBILE FIXES
+      ═══════════════════════════════════════════ */
+
+      /* Nav scrollable, no scrollbar */
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        flex-shrink: 1;
+        min-width: 0;
+      }
+      .nav-links::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* Hero title responsive */
+      .hero-title {
+        font-size: clamp(2rem, 10vw, 5rem);
+        line-height: 0.95;
+      }
+
+      /* Tab container: wrap on mobile */
+      .tab-container {
+        display: inline-flex;
+        flex-direction: row;
+        background: #f4f3ef;
+        border-radius: 99px;
+        padding: 4px;
+        border: 1px solid #eeecea;
+        gap: 4px;
+      }
+      @media (max-width: 520px) {
+        .tab-container {
+          flex-direction: column;
+          border-radius: 20px;
+          width: 100%;
+        }
+        .tab-btn {
+          width: 100%;
+          padding: 10px 16px;
+        }
+      }
+
+      /* Factory section mobile */
+      @media (max-width: 640px) {
+        .machine-row {
+          flex-direction: column !important;
+          align-items: center;
+        }
+        .machine-row .machine-card {
+          width: 100%;
+          max-width: 320px;
+        }
+        .machine-row .arrow-pipe {
+          flex-direction: row;
+          padding: 4px 0;
+        }
+      }
+
+      /* Flow visualizer mobile */
+      .flow-wrapper {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      @media (max-width: 640px) {
+        .flow-wrapper {
+          flex-direction: column;
+          gap: 6px;
+        }
+        .flow-arrow-h {
+          display: none !important;
+        }
+        .num-chip {
+          font-size: 1rem;
+          min-width: 44px;
+          padding: 4px 12px;
+        }
+        .flow-step {
+          flex-direction: row;
+          justify-content: center;
+          gap: 10px;
+          width: 100%;
+          max-width: 280px;
+        }
+        .flow-step > .text-xs {
+          order: -1;
+          min-width: 70px;
+          text-align: right;
+        }
+        .flow-step > .math-display {
+          order: 1;
+          min-width: 50px;
+        }
+      }
+
+      /* Section padding mobile */
+      @media (max-width: 640px) {
+        .section-py {
+          padding-top: 4rem;
+          padding-bottom: 4rem;
+        }
+        .hero-section {
+          padding-top: 6rem;
+          padding-bottom: 4rem;
+        }
+      }
+
+      /* Quiz touch targets */
+      @media (max-width: 640px) {
+        .quiz-opt {
+          padding: 14px 16px !important;
+          min-height: 52px;
+        }
+        .quiz-card-inner {
+          padding: 1.25rem !important;
+        }
+      }
+
+      /* Comparison cards: 1 col on mobile */
+      @media (max-width: 480px) {
+        .mapping-grid {
+          grid-template-columns: 1fr !important;
+        }
+        .comparison-card {
+          padding: 20px;
+        }
+      }
+
+      /* Simulator config grid: 1 col on mobile */
+      @media (max-width: 480px) {
+        .sim-config-grid {
+          grid-template-columns: 1fr !important;
+        }
+      }
+
+      /* Input x row: stack on very small screens */
+      @media (max-width: 400px) {
+        .x-input-row {
+          flex-direction: column !important;
+          align-items: stretch !important;
+        }
+        .x-input-row label {
+          margin-bottom: 4px;
+        }
+      }
+
+      /* Result panels: always 2 col but tighter on mobile */
+      @media (max-width: 400px) {
+        .result-panels {
+          grid-template-columns: 1fr !important;
+        }
+      }
+
+      /* Dark step walkthrough: readable on mobile */
+      @media (max-width: 640px) {
+        .dark-walkthrough {
+          padding: 1.5rem !important;
+        }
+      }
+
+      /* Hero CTA buttons: stack on mobile */
+      @media (max-width: 420px) {
+        .hero-cta {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .hero-cta a {
+          text-align: center;
+          justify-content: center;
+        }
+      }
+
+      /* Reduce background animation on mobile for perf */
+      @media (max-width: 640px) {
+        html::before {
+          animation-duration: 60s;
+        }
+      }
+
+      /* Process emoji */
+      .process-emoji {
+        font-size: 2.5rem;
+        display: inline-block;
+        transition:
+          transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+          opacity 0.3s;
+      }
+      .process-emoji.transform-in {
+        transform: scale(1.3);
       }
     </style>
   </head>
 
   <body class="font-body">
-    <!-- ══════════════════════════════════════════════════════════
-       TOP NAV
-  ══════════════════════════════════════════════════════════ -->
+    <!-- NAV -->
     <nav
       id="topnav"
       class="fixed top-0 left-0 right-0 z-50 border-b border-transparent"
     >
       <div
-        class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between"
+        class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3"
       >
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2 flex-shrink-0">
           <div
             class="w-7 h-7 rounded-lg bg-ink flex items-center justify-center"
           >
@@ -555,42 +684,46 @@
               />
             </svg>
           </div>
-          <span class="font-display font-600 text-sm tracking-tight text-ink"
+          <span
+            class="font-display font-600 text-sm tracking-tight text-ink hidden xs:block sm:block"
             >Fungsi Komposisi</span
           >
         </div>
-        <div class="hidden sm:flex items-center gap-1">
+        <div class="nav-links">
           <a
             href="#analogi"
-            class="px-3 py-1.5 text-sm text-ink/60 hover:text-ink transition-colors rounded-lg hover:bg-paper-warm"
+            class="px-2 sm:px-3 py-1.5 text-[11px] sm:text-sm text-ink/60 hover:text-ink transition-colors rounded-lg hover:bg-paper-warm whitespace-nowrap"
             >Analogi</a
           >
           <a
             href="#konsep"
-            class="px-3 py-1.5 text-sm text-ink/60 hover:text-ink transition-colors rounded-lg hover:bg-paper-warm"
+            class="px-2 sm:px-3 py-1.5 text-[11px] sm:text-sm text-ink/60 hover:text-ink transition-colors rounded-lg hover:bg-paper-warm whitespace-nowrap"
             >Konsep</a
           >
           <a
             href="#simulator"
-            class="px-3 py-1.5 text-sm text-ink/60 hover:text-ink transition-colors rounded-lg hover:bg-paper-warm"
+            class="px-2 sm:px-3 py-1.5 text-[11px] sm:text-sm text-ink/60 hover:text-ink transition-colors rounded-lg hover:bg-paper-warm whitespace-nowrap"
             >Simulator</a
           >
           <a
             href="#latihan"
-            class="ml-2 px-4 py-1.5 text-sm bg-ink text-paper rounded-full hover:bg-ink/80 transition-colors font-medium"
+            class="ml-1 sm:ml-2 px-3 sm:px-4 py-1 sm:py-1.5 text-[11px] sm:text-sm bg-ink text-paper rounded-full hover:bg-ink/80 transition-colors font-medium whitespace-nowrap"
             >Latihan</a
           >
         </div>
       </div>
     </nav>
 
-    <!-- ══════════════════════════════════════════════════════════
-       HERO
-  ══════════════════════════════════════════════════════════ -->
+    <div class="fixed top-16 left-0 w-full z-40">
+      <div class="progress-track">
+        <div id="pageProgress" class="progress-fill"></div>
+      </div>
+    </div>
+
+    <!-- HERO -->
     <section
-      class="noise-bg relative min-h-screen flex flex-col justify-center pt-20 pb-16 px-6 overflow-hidden"
+      class="noise-bg hero-section relative min-h-screen flex flex-col justify-center pt-20 pb-16 px-6 overflow-hidden"
     >
-      <!-- Decorative blobs -->
       <div
         class="absolute top-20 right-10 w-72 h-72 rounded-full bg-sage-light opacity-40 blur-3xl pointer-events-none"
       ></div>
@@ -599,7 +732,6 @@
       ></div>
 
       <div class="relative max-w-4xl mx-auto text-center">
-        <!-- Badge -->
         <div
           class="reveal inline-flex items-center gap-2 badge bg-sage-light text-sage-dark border border-sage/20 mb-8"
         >
@@ -607,9 +739,8 @@
           Matematika · Kelas 11 · Fungsi Komposisi
         </div>
 
-        <!-- Title -->
         <h1
-          class="reveal hero-title font-display font-800 text-[3.5rem] sm:text-[5rem] leading-[0.95] tracking-tight mb-6"
+          class="reveal hero-title font-display font-800 tracking-tight mb-6"
           style="animation-delay: 0.1s"
         >
           Fungsi<br />
@@ -632,9 +763,8 @@
           </span>
         </h1>
 
-        <!-- Subtitle -->
         <p
-          class="reveal text-lg sm:text-xl text-ink/60 max-w-xl mx-auto leading-relaxed mb-12"
+          class="reveal text-base sm:text-xl text-ink/60 max-w-xl mx-auto leading-relaxed mb-12 px-2"
           style="animation-delay: 0.2s"
         >
           Dari kentang menjadi keripik — begitulah cara kerja fungsi komposisi
@@ -642,9 +772,8 @@
           menakutkan.
         </p>
 
-        <!-- CTA -->
         <div
-          class="reveal flex flex-col sm:flex-row gap-3 justify-center"
+          class="reveal hero-cta flex flex-col sm:flex-row gap-3 justify-center"
           style="animation-delay: 0.3s"
         >
           <a
@@ -671,7 +800,6 @@
         </div>
       </div>
 
-      <!-- Scroll indicator -->
       <div
         class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-ink/30"
       >
@@ -685,35 +813,57 @@
       </div>
     </section>
 
-    <!-- ══════════════════════════════════════════════════════════
-       SECTION 1 — ANALOGI KERIPIK
-  ══════════════════════════════════════════════════════════ -->
-    <section id="analogi" class="py-28 px-6">
+    <section class="max-w-5xl mx-auto mb-20">
+      <div class="grid md:grid-cols-4 gap-4">
+        <div class="journey-card">
+          <span>01</span>
+          <p>Analogi</p>
+        </div>
+
+        <div class="journey-card">
+          <span>02</span>
+          <p>Konsep</p>
+        </div>
+
+        <div class="journey-card">
+          <span>03</span>
+          <p>Simulasi</p>
+        </div>
+
+        <div class="journey-card">
+          <span>04</span>
+          <p>Latihan</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 1 — ANALOGI -->
+    <section id="analogi" class="section-py py-28 px-4 sm:px-6">
       <div class="max-w-5xl mx-auto">
-        <!-- Section label -->
-        <div class="reveal mb-16 text-center">
+        <div class="reveal mb-12 sm:mb-16 text-center">
           <span class="badge bg-terra-light text-terra border border-terra/20"
             >Bagian 01 · Analogi</span
           >
           <h2
-            class="font-display font-700 text-[2.2rem] sm:text-[3rem] leading-tight mt-4 mb-4"
+            class="font-display font-700 text-[1.8rem] sm:text-[3rem] leading-tight mt-4 mb-4"
           >
             Pabrik Keripik Kentang
           </h2>
-          <p class="text-ink/60 max-w-lg mx-auto text-lg leading-relaxed">
+          <p
+            class="text-ink/60 max-w-lg mx-auto text-base sm:text-lg leading-relaxed px-2"
+          >
             Bayangkan kamu punya dua mesin di pabrik kecilmu. Setiap mesin punya
             tugasnya sendiri — dan keduanya harus bekerja secara berurutan.
           </p>
         </div>
 
-        <!-- Interactive Factory -->
         <div
-          class="reveal bg-white border border-paper-cool rounded-3xl p-8 sm:p-12 shadow-sm"
+          class="reveal bg-white border border-paper-cool rounded-3xl p-5 sm:p-12 shadow-sm"
         >
           <!-- Progress bar -->
           <div class="flex items-center gap-3 mb-8">
             <span
-              class="text-xs text-ink/40 font-medium uppercase tracking-wider"
+              class="text-xs text-ink/40 font-medium uppercase tracking-wider hidden sm:block"
               >Proses</span
             >
             <div class="flex-1 progress-track">
@@ -728,12 +878,14 @@
 
           <!-- Factory visualization -->
           <div
-            class="flex flex-col sm:flex-row items-center justify-between gap-6 machine-row"
+            class="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 machine-row"
           >
             <!-- Input -->
-            <div class="flex flex-col items-center gap-3 min-w-[100px]">
+            <div
+              class="flex flex-col items-center gap-3 min-w-[80px] sm:min-w-[100px]"
+            >
               <div
-                class="w-20 h-20 rounded-2xl bg-paper-warm border border-paper-cool flex items-center justify-center text-4xl"
+                class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-paper-warm border border-paper-cool flex items-center justify-center text-3xl sm:text-4xl"
                 id="input-icon"
               >
                 🥔
@@ -745,9 +897,8 @@
               >
             </div>
 
-            <!-- Arrow -->
             <div
-              class="arrow-pipe hidden sm:flex flex-col items-center gap-1 text-ink/25"
+              class="arrow-pipe flex flex-row sm:flex-col items-center gap-1 text-ink/25"
             >
               <div class="dot"></div>
               <div class="dot"></div>
@@ -756,11 +907,13 @@
 
             <!-- Machine A -->
             <div
-              class="machine-card p-6 w-full sm:w-48 text-center"
+              class="machine-card p-5 sm:p-6 w-full sm:w-48 text-center"
               id="machine-a"
             >
-              <div class="text-3xl mb-3">🔪</div>
-              <div class="font-display font-700 text-base mb-1">Mesin A</div>
+              <div class="text-2xl sm:text-3xl mb-2 sm:mb-3">🔪</div>
+              <div class="font-display font-700 text-sm sm:text-base mb-1">
+                Mesin A
+              </div>
               <div class="text-xs text-ink/50 leading-snug">
                 Memotong & membumbui kentang
               </div>
@@ -774,19 +927,18 @@
             </div>
 
             <!-- Middle output -->
-            <div class="flex flex-col items-center gap-3">
+            <div class="flex flex-col items-center gap-2 sm:gap-3">
               <div
                 id="middle-icon"
-                class="w-16 h-16 rounded-xl bg-slate-light border border-slate/20 flex items-center justify-center text-3xl opacity-40 transition-opacity duration-500"
+                class="w-14 h-14 sm:w-16 sm:h-16 rounded-xl bg-slate-light border border-slate/20 flex items-center justify-center text-2xl sm:text-3xl opacity-40 transition-opacity duration-500"
               >
                 🥜
               </div>
               <span class="text-xs text-ink/40">Hasil Antara</span>
             </div>
 
-            <!-- Arrow -->
             <div
-              class="arrow-pipe hidden sm:flex flex-col items-center gap-1 text-ink/25"
+              class="arrow-pipe flex flex-row sm:flex-col items-center gap-1 text-ink/25"
             >
               <div class="dot" style="animation-delay: 0.3s"></div>
               <div class="dot" style="animation-delay: 0.5s"></div>
@@ -795,11 +947,13 @@
 
             <!-- Machine B -->
             <div
-              class="machine-card p-6 w-full sm:w-48 text-center"
+              class="machine-card p-5 sm:p-6 w-full sm:w-48 text-center"
               id="machine-b"
             >
-              <div class="text-3xl mb-3">🔥</div>
-              <div class="font-display font-700 text-base mb-1">Mesin B</div>
+              <div class="text-2xl sm:text-3xl mb-2 sm:mb-3">🔥</div>
+              <div class="font-display font-700 text-sm sm:text-base mb-1">
+                Mesin B
+              </div>
               <div class="text-xs text-ink/50 leading-snug">
                 Menggoreng hingga renyah
               </div>
@@ -812,9 +966,8 @@
               </div>
             </div>
 
-            <!-- Arrow -->
             <div
-              class="arrow-pipe hidden sm:flex flex-col items-center gap-1 text-ink/25"
+              class="arrow-pipe flex flex-row sm:flex-col items-center gap-1 text-ink/25"
             >
               <div class="dot" style="animation-delay: 0.6s"></div>
               <div class="dot" style="animation-delay: 0.8s"></div>
@@ -822,10 +975,12 @@
             </div>
 
             <!-- Output -->
-            <div class="flex flex-col items-center gap-3 min-w-[100px]">
+            <div
+              class="flex flex-col items-center gap-3 min-w-[80px] sm:min-w-[100px]"
+            >
               <div
                 id="output-icon"
-                class="w-20 h-20 rounded-2xl bg-paper-warm border border-paper-cool flex items-center justify-center text-4xl opacity-30 transition-all duration-500"
+                class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-paper-warm border border-paper-cool flex items-center justify-center text-3xl sm:text-4xl opacity-30 transition-all duration-500"
               >
                 🍟
               </div>
@@ -838,11 +993,13 @@
           </div>
 
           <!-- Action buttons -->
-          <div class="mt-10 flex flex-wrap gap-3 justify-center">
+          <div
+            class="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 justify-center"
+          >
             <button
               id="btn-start-demo"
               onclick="runKentangDemo()"
-              class="inline-flex items-center gap-2 bg-sage text-white px-8 py-3 rounded-full font-medium text-sm hover:bg-sage-dark transition-all hover:-translate-y-0.5 hover:shadow-md"
+              class="inline-flex items-center justify-center gap-2 bg-sage text-white px-8 py-3 rounded-full font-medium text-sm hover:bg-sage-dark transition-all hover:-translate-y-0.5 hover:shadow-md"
             >
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                 <polygon points="2,1 13,7 2,13" fill="currentColor" />
@@ -851,7 +1008,7 @@
             </button>
             <button
               onclick="resetKentangDemo()"
-              class="inline-flex items-center gap-2 bg-paper-warm text-ink border border-paper-cool px-6 py-3 rounded-full font-medium text-sm hover:border-ink/30 transition-all"
+              class="inline-flex items-center justify-center gap-2 bg-paper-warm text-ink border border-paper-cool px-6 py-3 rounded-full font-medium text-sm hover:border-ink/30 transition-all"
             >
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                 <path
@@ -865,14 +1022,12 @@
             </button>
           </div>
 
-          <!-- Status message -->
           <div
             id="demo-message"
-            class="mt-6 text-center text-sm text-ink/50 min-h-[20px] transition-all duration-500"
+            class="mt-6 text-center text-sm text-ink/50 min-h-[20px] transition-all duration-500 px-2"
           ></div>
         </div>
 
-        <!-- Key insight -->
         <div class="reveal mt-8 callout">
           <p class="text-sm leading-relaxed text-ink/70">
             <strong class="font-semibold text-ink">Perhatikan!</strong> Output
@@ -886,36 +1041,39 @@
 
     <div class="section-rule"></div>
 
-    <!-- ══════════════════════════════════════════════════════════
-       SECTION 2 — TRANSISI KE KONSEP
-  ══════════════════════════════════════════════════════════ -->
-    <section id="konsep" class="py-28 px-6">
+    <!-- SECTION 2 — KONSEP -->
+    <section id="konsep" class="section-py py-28 px-4 sm:px-6">
       <div class="max-w-5xl mx-auto">
-        <div class="reveal mb-16 text-center">
+        <div class="reveal mb-12 sm:mb-16 text-center">
           <span class="badge bg-slate-light text-slate border border-slate/20"
             >Bagian 02 · Konsep</span
           >
           <h2
-            class="font-display font-700 text-[2.2rem] sm:text-[3rem] leading-tight mt-4 mb-4"
+            class="font-display font-700 text-[1.8rem] sm:text-[3rem] leading-tight mt-4 mb-4"
           >
             Sekarang, Mari Pakai<br />Bahasa Matematika
           </h2>
-          <p class="text-ink/60 max-w-lg mx-auto text-lg leading-relaxed">
+          <p
+            class="text-ink/60 max-w-lg mx-auto text-base sm:text-lg leading-relaxed px-2"
+          >
             Tenang, ini lebih sederhana dari yang kamu bayangkan. Kita cukup
             ganti nama mesinnya saja.
           </p>
         </div>
 
         <!-- Mapping cards -->
-        <div class="reveal grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
-          <!-- f(x) -->
+        <div
+          class="reveal grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12 mapping-grid"
+        >
           <div class="comparison-card text-center">
             <div
-              class="w-14 h-14 rounded-2xl bg-sage-light mx-auto mb-4 flex items-center justify-center text-2xl"
+              class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-sage-light mx-auto mb-4 flex items-center justify-center text-xl sm:text-2xl"
             >
               🔪
             </div>
-            <div class="font-display font-700 text-xl mb-1">Mesin A</div>
+            <div class="font-display font-700 text-lg sm:text-xl mb-1">
+              Mesin A
+            </div>
             <div class="text-ink/40 text-sm mb-4">yang tadi kita lihat</div>
             <div class="text-3xl font-display font-800">→</div>
             <div class="mt-4 bg-sage-light rounded-xl px-4 py-3">
@@ -927,14 +1085,15 @@
             </div>
           </div>
 
-          <!-- g(x) -->
           <div class="comparison-card text-center">
             <div
-              class="w-14 h-14 rounded-2xl bg-slate-light mx-auto mb-4 flex items-center justify-center text-2xl"
+              class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-slate-light mx-auto mb-4 flex items-center justify-center text-xl sm:text-2xl"
             >
               🔥
             </div>
-            <div class="font-display font-700 text-xl mb-1">Mesin B</div>
+            <div class="font-display font-700 text-lg sm:text-xl mb-1">
+              Mesin B
+            </div>
             <div class="text-ink/40 text-sm mb-4">yang bekerja setelahnya</div>
             <div class="text-3xl font-display font-800">→</div>
             <div class="mt-4 bg-slate-light rounded-xl px-4 py-3">
@@ -946,22 +1105,24 @@
             </div>
           </div>
 
-          <!-- komposisi -->
           <div
             class="comparison-card text-center border-sage/30 bg-gradient-to-b from-sage-light/30"
           >
             <div
-              class="w-14 h-14 rounded-2xl bg-gradient-to-br from-sage-light to-slate-light mx-auto mb-4 flex items-center justify-center text-2xl"
+              class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-sage-light to-slate-light mx-auto mb-4 flex items-center justify-center text-xl sm:text-2xl"
             >
               🍟
             </div>
-            <div class="font-display font-700 text-xl mb-1">A lalu B</div>
+            <div class="font-display font-700 text-lg sm:text-xl mb-1">
+              A lalu B
+            </div>
             <div class="text-ink/40 text-sm mb-4">digabung bersama</div>
             <div class="text-3xl font-display font-800">→</div>
             <div
               class="mt-4 bg-gradient-to-r from-sage-light to-slate-light rounded-xl px-4 py-3 border border-sage/20"
             >
-              <span class="font-display font-700 text-2xl text-ink math-display"
+              <span
+                class="font-display font-700 text-xl sm:text-2xl text-ink math-display"
                 >(g ∘ f)(x)</span
               >
               <p class="text-xs text-ink/50 mt-1">Komposisi g setelah f</p>
@@ -969,8 +1130,7 @@
           </div>
         </div>
 
-        <!-- Formal definition, casual style -->
-        <div class="reveal grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div class="reveal grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           <div class="callout slate">
             <p class="font-semibold text-slate text-sm mb-2">
               Definisi Formal (versi santai)
@@ -998,31 +1158,33 @@
           </div>
         </div>
 
-        <!-- Step-by-step formula walkthrough -->
-        <div class="reveal mt-10 bg-ink rounded-3xl p-8 sm:p-12 text-paper">
+        <!-- Step-by-step -->
+        <div
+          class="reveal mt-8 sm:mt-10 bg-ink rounded-3xl p-6 sm:p-12 text-paper dark-walkthrough"
+        >
           <p class="text-xs tracking-widest uppercase text-paper/40 mb-6">
             Cara Menghitung · Step by Step
           </p>
           <div class="space-y-4">
-            <div class="flex items-start gap-4">
+            <div class="flex items-start gap-3 sm:gap-4">
               <span
                 class="w-7 h-7 rounded-full bg-sage flex-shrink-0 flex items-center justify-center text-xs font-bold text-white mt-0.5"
                 >1</span
               >
               <div>
-                <p class="font-medium text-paper">
+                <p class="font-medium text-paper text-sm sm:text-base">
                   Tentukan nilai x yang akan dimasukkan.
                 </p>
                 <p class="text-paper/50 text-sm mt-0.5">Misal: x = 3</p>
               </div>
             </div>
-            <div class="flex items-start gap-4">
+            <div class="flex items-start gap-3 sm:gap-4">
               <span
                 class="w-7 h-7 rounded-full bg-sage flex-shrink-0 flex items-center justify-center text-xs font-bold text-white mt-0.5"
                 >2</span
               >
               <div>
-                <p class="font-medium text-paper">
+                <p class="font-medium text-paper text-sm sm:text-base">
                   Hitung f(x) terlebih dahulu.
                 </p>
                 <p class="text-paper/50 text-sm mt-0.5 math-display">
@@ -1030,13 +1192,13 @@
                 </p>
               </div>
             </div>
-            <div class="flex items-start gap-4">
+            <div class="flex items-start gap-3 sm:gap-4">
               <span
                 class="w-7 h-7 rounded-full bg-slate flex-shrink-0 flex items-center justify-center text-xs font-bold text-white mt-0.5"
                 >3</span
               >
               <div>
-                <p class="font-medium text-paper">
+                <p class="font-medium text-paper text-sm sm:text-base">
                   Masukkan hasil f(x) ke dalam g.
                 </p>
                 <p class="text-paper/50 text-sm mt-0.5 math-display">
@@ -1044,13 +1206,15 @@
                 </p>
               </div>
             </div>
-            <div class="flex items-start gap-4">
+            <div class="flex items-start gap-3 sm:gap-4">
               <span
                 class="w-7 h-7 rounded-full bg-terra flex-shrink-0 flex items-center justify-center text-xs font-bold text-white mt-0.5"
                 >✓</span
               >
               <div>
-                <p class="font-medium text-sage-mid">Jadi (g ∘ f)(3) = 49</p>
+                <p class="font-medium text-sage-mid text-sm sm:text-base">
+                  Jadi (g ∘ f)(3) = 49
+                </p>
                 <p class="text-paper/50 text-sm mt-0.5">
                   Hasil akhir komposisi!
                 </p>
@@ -1063,31 +1227,29 @@
 
     <div class="section-rule"></div>
 
-    <!-- ══════════════════════════════════════════════════════════
-       SECTION 3 — INTERACTIVE SIMULATOR
-  ══════════════════════════════════════════════════════════ -->
-    <section id="simulator" class="py-28 px-6">
+    <!-- SECTION 3 — SIMULATOR -->
+    <section id="simulator" class="section-py py-28 px-4 sm:px-6">
       <div class="max-w-5xl mx-auto">
-        <div class="reveal mb-12 text-center">
+        <div class="reveal mb-10 sm:mb-12 text-center">
           <span class="badge bg-gold-light text-gold border border-gold/20"
             >Bagian 03 · Simulator</span
           >
           <h2
-            class="font-display font-700 text-[2.2rem] sm:text-[3rem] leading-tight mt-4 mb-4"
+            class="font-display font-700 text-[1.8rem] sm:text-[3rem] leading-tight mt-4 mb-4"
           >
             Coba Sendiri — Langsung!
           </h2>
-          <p class="text-ink/60 max-w-lg mx-auto text-lg leading-relaxed">
+          <p
+            class="text-ink/60 max-w-lg mx-auto text-base sm:text-lg leading-relaxed px-2"
+          >
             Atur fungsinya, masukkan nilai x, dan lihat bagaimana angkamu
             mengalir melalui kedua fungsi secara real-time.
           </p>
         </div>
 
-        <!-- Tab: gof vs fog -->
-        <div class="reveal flex justify-center mb-8">
-          <div
-            class="inline-flex bg-paper-warm rounded-full p-1 border border-paper-cool gap-1"
-          >
+        <!-- Tab -->
+        <div class="reveal flex justify-center mb-8 px-2">
+          <div class="tab-container">
             <button
               class="tab-btn active-tab"
               id="tab-gof"
@@ -1106,11 +1268,13 @@
           class="reveal bg-white border border-paper-cool rounded-3xl overflow-hidden shadow-sm"
         >
           <!-- Config panel -->
-          <div class="border-b border-paper-cool p-6 sm:p-8 bg-paper-warm/30">
+          <div class="border-b border-paper-cool p-5 sm:p-8 bg-paper-warm/30">
             <p class="text-xs tracking-widest uppercase text-ink/30 mb-5">
               Konfigurasi Fungsi
             </p>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            <div
+              class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 sim-config-grid"
+            >
               <!-- f(x) config -->
               <div>
                 <div class="flex items-center gap-2 mb-4">
@@ -1119,7 +1283,8 @@
                   >
                     <span class="text-sage text-xs font-bold">f</span>
                   </span>
-                  <span class="font-display font-600 text-base math-display"
+                  <span
+                    class="font-display font-600 text-sm sm:text-base math-display"
                     >f(x) = ax + b</span
                   >
                 </div>
@@ -1143,7 +1308,6 @@
                       step="1"
                       id="slider-a"
                       oninput="updateSimulator()"
-                      class="w-full"
                     />
                   </div>
                   <div>
@@ -1165,7 +1329,6 @@
                       step="1"
                       id="slider-b"
                       oninput="updateSimulator()"
-                      class="w-full"
                     />
                   </div>
                 </div>
@@ -1173,7 +1336,7 @@
                   class="mt-4 bg-sage-light rounded-xl px-4 py-2 text-center"
                 >
                   <span
-                    class="math-display font-display font-700 text-sage-dark"
+                    class="math-display font-display font-700 text-sage-dark text-sm sm:text-base"
                     id="fx-display"
                     >f(x) = 2x + 3</span
                   >
@@ -1188,7 +1351,8 @@
                   >
                     <span class="text-slate text-xs font-bold">g</span>
                   </span>
-                  <span class="font-display font-600 text-base math-display"
+                  <span
+                    class="font-display font-600 text-sm sm:text-base math-display"
                     >g(x) = x<sup>n</sup> + c</span
                   >
                 </div>
@@ -1210,7 +1374,6 @@
                       step="1"
                       id="slider-n"
                       oninput="updateSimulator()"
-                      class="w-full"
                     />
                   </div>
                   <div>
@@ -1232,7 +1395,6 @@
                       step="1"
                       id="slider-c"
                       oninput="updateSimulator()"
-                      class="w-full"
                     />
                   </div>
                 </div>
@@ -1240,7 +1402,7 @@
                   class="mt-4 bg-slate-light rounded-xl px-4 py-2 text-center"
                 >
                   <span
-                    class="math-display font-display font-700 text-slate"
+                    class="math-display font-display font-700 text-slate text-sm sm:text-base"
                     id="gx-display"
                     >g(x) = x²</span
                   >
@@ -1249,10 +1411,12 @@
             </div>
           </div>
 
-          <!-- Input x + flow visualization -->
-          <div class="p-6 sm:p-8">
+          <!-- Input x + flow -->
+          <div class="p-5 sm:p-8">
             <!-- x input -->
-            <div class="flex flex-col sm:flex-row sm:items-center gap-4 mb-8">
+            <div
+              class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-8 x-input-row"
+            >
               <label class="text-sm font-medium text-ink/70 min-w-fit"
                 >Masukkan nilai x :</label
               >
@@ -1273,7 +1437,7 @@
                   value="2"
                   min="-10"
                   max="10"
-                  class="w-20 text-center bg-paper-warm border border-paper-cool rounded-xl px-3 py-2 font-display font-700 text-lg focus:outline-none focus:border-sage"
+                  class="w-16 sm:w-20 text-center bg-paper-warm border border-paper-cool rounded-xl px-2 py-2 font-display font-700 text-base sm:text-lg focus:outline-none focus:border-sage"
                   oninput="syncX(this.value)"
                 />
               </div>
@@ -1281,7 +1445,6 @@
 
             <!-- Flow visualization -->
             <div class="relative">
-              <!-- Current mode label -->
               <div
                 id="mode-label"
                 class="text-xs uppercase tracking-widest text-ink/30 text-center mb-6"
@@ -1289,10 +1452,8 @@
                 Alur: (g ∘ f)(x) — f dieksekusi lebih dulu
               </div>
 
-              <!-- Flow steps -->
-              <div
-                class="flex flex-col sm:flex-row items-center gap-4 sm:gap-2 justify-center"
-              >
+              <!-- Flow steps: horizontal on desktop, vertical on mobile -->
+              <div class="flow-wrapper" id="flow-visual">
                 <!-- Step 1: x -->
                 <div class="flow-step show" id="flow-0">
                   <div class="text-xs text-ink/40 mb-1 font-medium">Input</div>
@@ -1302,12 +1463,28 @@
 
                 <!-- Arrow -->
                 <div
-                  class="hidden sm:flex items-center text-ink/20 px-2 flow-step show"
+                  class="flow-arrow-h hidden sm:flex items-center text-ink/20 px-2 flow-step show"
                   id="flow-arr1"
                 >
                   <svg width="32" height="12" viewBox="0 0 32 12" fill="none">
                     <path
                       d="M0 6h28M22 1l6 5-6 5"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+
+                <!-- Mobile down arrow 1 -->
+                <div
+                  class="sm:hidden text-ink/20 flow-step show"
+                  id="flow-arr1-m"
+                >
+                  <svg width="12" height="20" viewBox="0 0 12 20" fill="none">
+                    <path
+                      d="M6 0v16M1 11l5 6 5-6"
                       stroke="currentColor"
                       stroke-width="1.5"
                       stroke-linecap="round"
@@ -1325,11 +1502,11 @@
                     f(x)
                   </div>
                   <div
-                    class="machine-card p-4 text-center min-w-[90px]"
+                    class="machine-card p-3 sm:p-4 text-center min-w-[80px] sm:min-w-[90px]"
                     id="first-fn-box"
                   >
                     <div
-                      class="math-display font-display font-700 text-sm"
+                      class="math-display font-display font-700 text-xs sm:text-sm"
                       id="first-fn-formula"
                     >
                       2x + 3
@@ -1339,12 +1516,25 @@
 
                 <!-- Arrow -->
                 <div
-                  class="hidden sm:flex items-center text-ink/20 px-2 flow-step show"
+                  class="flow-arrow-h hidden sm:flex items-center text-ink/20 px-2 flow-step show"
                   id="flow-arr2"
                 >
                   <svg width="32" height="12" viewBox="0 0 32 12" fill="none">
                     <path
                       d="M0 6h28M22 1l6 5-6 5"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+
+                <!-- Mobile down arrow 2 -->
+                <div class="sm:hidden text-ink/20 flow-step" id="flow-arr2-m">
+                  <svg width="12" height="20" viewBox="0 0 12 20" fill="none">
+                    <path
+                      d="M6 0v16M1 11l5 6 5-6"
                       stroke="currentColor"
                       stroke-width="1.5"
                       stroke-linecap="round"
@@ -1373,12 +1563,25 @@
 
                 <!-- Arrow -->
                 <div
-                  class="hidden sm:flex items-center text-ink/20 px-2 flow-step"
+                  class="flow-arrow-h hidden sm:flex items-center text-ink/20 px-2 flow-step"
                   id="flow-arr3"
                 >
                   <svg width="32" height="12" viewBox="0 0 32 12" fill="none">
                     <path
                       d="M0 6h28M22 1l6 5-6 5"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+
+                <!-- Mobile down arrow 3 -->
+                <div class="sm:hidden text-ink/20 flow-step" id="flow-arr3-m">
+                  <svg width="12" height="20" viewBox="0 0 12 20" fill="none">
+                    <path
+                      d="M6 0v16M1 11l5 6 5-6"
                       stroke="currentColor"
                       stroke-width="1.5"
                       stroke-linecap="round"
@@ -1396,11 +1599,11 @@
                     g(x)
                   </div>
                   <div
-                    class="machine-card p-4 text-center min-w-[90px]"
+                    class="machine-card p-3 sm:p-4 text-center min-w-[80px] sm:min-w-[90px]"
                     id="second-fn-box"
                   >
                     <div
-                      class="math-display font-display font-700 text-sm"
+                      class="math-display font-display font-700 text-xs sm:text-sm"
                       id="second-fn-formula"
                     >
                       x²
@@ -1410,12 +1613,25 @@
 
                 <!-- Arrow -->
                 <div
-                  class="hidden sm:flex items-center text-ink/20 px-2 flow-step"
+                  class="flow-arrow-h hidden sm:flex items-center text-ink/20 px-2 flow-step"
                   id="flow-arr4"
                 >
                   <svg width="32" height="12" viewBox="0 0 32 12" fill="none">
                     <path
                       d="M0 6h28M22 1l6 5-6 5"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+
+                <!-- Mobile down arrow 4 -->
+                <div class="sm:hidden text-ink/20 flow-step" id="flow-arr4-m">
+                  <svg width="12" height="20" viewBox="0 0 12 20" fill="none">
+                    <path
+                      d="M6 0v16M1 11l5 6 5-6"
                       stroke="currentColor"
                       stroke-width="1.5"
                       stroke-linecap="round"
@@ -1447,9 +1663,9 @@
             <!-- Result summary boxes -->
             <div
               id="result-panels"
-              class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4"
+              class="mt-8 sm:mt-10 grid grid-cols-2 gap-3 sm:gap-4 result-panels"
             >
-              <div class="result-box p-5 text-center">
+              <div class="result-box p-4 sm:p-5 text-center">
                 <div
                   class="text-xs text-ink/40 uppercase tracking-wider mb-2"
                   id="res1-title"
@@ -1457,7 +1673,7 @@
                   (g ∘ f)(x)
                 </div>
                 <div
-                  class="font-display font-800 text-3xl text-sage-dark"
+                  class="font-display font-800 text-2xl sm:text-3xl text-sage-dark"
                   id="res1-val"
                 >
                   49
@@ -1469,7 +1685,7 @@
                   g(f(2)) = g(7) = 49
                 </div>
               </div>
-              <div class="result-box terra p-5 text-center">
+              <div class="result-box terra p-4 sm:p-5 text-center">
                 <div
                   class="text-xs text-ink/40 uppercase tracking-wider mb-2"
                   id="res2-title"
@@ -1477,7 +1693,7 @@
                   (f ∘ g)(x)
                 </div>
                 <div
-                  class="font-display font-800 text-3xl text-terra"
+                  class="font-display font-800 text-2xl sm:text-3xl text-terra"
                   id="res2-val"
                 >
                   11
@@ -1491,7 +1707,6 @@
               </div>
             </div>
 
-            <!-- Not equal banner -->
             <div id="not-equal-banner" class="mt-4 callout amber text-center">
               <p class="text-sm font-medium text-ink/70">
                 🎯 Lihat! Hasilnya <strong>berbeda</strong> — ini membuktikan
@@ -1514,34 +1729,29 @@
 
     <div class="section-rule"></div>
 
-    <!-- ══════════════════════════════════════════════════════════
-       SECTION 4 — LATIHAN
-  ══════════════════════════════════════════════════════════ -->
-    <section id="latihan" class="py-28 px-6">
+    <!-- SECTION 4 — LATIHAN -->
+    <section id="latihan" class="section-py py-28 px-4 sm:px-6">
       <div class="max-w-4xl mx-auto">
-        <div class="reveal mb-12 text-center">
+        <div class="reveal mb-10 sm:mb-12 text-center">
           <span class="badge bg-paper-cool text-ink/50 border border-paper-cool"
             >Bagian 04 · Latihan</span
           >
           <h2
-            class="font-display font-700 text-[2.2rem] sm:text-[3rem] leading-tight mt-4 mb-4"
+            class="font-display font-700 text-[1.8rem] sm:text-[3rem] leading-tight mt-4 mb-4"
           >
             Uji Pemahamanmu
           </h2>
-          <p class="text-ink/60 max-w-md mx-auto text-lg">
+          <p class="text-ink/60 max-w-md mx-auto text-base sm:text-lg">
             Tiga soal pilihan ganda untuk memastikan kamu benar-benar paham,
             bukan sekadar hafal.
           </p>
         </div>
 
-        <div id="quiz-container" class="space-y-6">
-          <!-- Quiz rendered by JS -->
-        </div>
+        <div id="quiz-container" class="space-y-4 sm:space-y-6"></div>
 
-        <!-- Quiz result -->
         <div
           id="quiz-result"
-          class="hidden mt-8 bg-ink rounded-3xl p-8 text-center text-paper"
+          class="hidden mt-8 bg-ink rounded-3xl p-6 sm:p-8 text-center text-paper"
         >
           <div class="text-5xl mb-4" id="quiz-emoji">🎉</div>
           <div class="font-display font-800 text-3xl mb-2" id="quiz-score">
@@ -1560,10 +1770,8 @@
       </div>
     </section>
 
-    <!-- ══════════════════════════════════════════════════════════
-       FOOTER
-  ══════════════════════════════════════════════════════════ -->
-    <footer class="border-t border-paper-cool py-12 px-6">
+    <!-- FOOTER -->
+    <footer class="border-t border-paper-cool py-10 sm:py-12 px-4 sm:px-6">
       <div
         class="max-w-5xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4"
       >
@@ -1601,23 +1809,19 @@
       </div>
     </footer>
 
-    <!-- ══════════════════════════════════════════════════════════
-       JAVASCRIPT
-  ══════════════════════════════════════════════════════════ -->
     <script>
-      // ── Nav scroll behavior ──────────────────────────────────
+      // Nav scroll
       window.addEventListener("scroll", () => {
         const nav = document.getElementById("topnav");
         if (window.scrollY > 20) nav.classList.add("scrolled");
         else nav.classList.remove("scrolled");
       });
 
-      // ── Scroll reveal ────────────────────────────────────────
+      // Scroll reveal
       const revealObserver = new IntersectionObserver(
         (entries) => {
-          entries.forEach((entry, i) => {
+          entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              // Stagger children by index
               const delay = entry.target.dataset.delay || 0;
               setTimeout(() => entry.target.classList.add("visible"), delay);
             }
@@ -1627,13 +1831,11 @@
       );
 
       document.querySelectorAll(".reveal").forEach((el, i) => {
-        el.dataset.delay = (i % 4) * 80; // stagger within view
+        el.dataset.delay = (i % 4) * 80;
         revealObserver.observe(el);
       });
 
-      // ════════════════════════════════════════════════════════
-      // KENTANG DEMO — Section 1
-      // ════════════════════════════════════════════════════════
+      // ── KENTANG DEMO ──
       let demoRunning = false;
 
       const messages = [
@@ -1647,7 +1849,6 @@
       async function runKentangDemo() {
         if (demoRunning) return;
         demoRunning = true;
-
         const btn = document.getElementById("btn-start-demo");
         btn.disabled = true;
         btn.classList.add("opacity-50", "cursor-not-allowed");
@@ -1670,18 +1871,13 @@
           stepLabel.textContent = l;
         };
 
-        // Step 0 — Init
         setMsg(messages[0]);
         setStep(10, "Persiapan");
         await delay(800);
-
-        // Step 1 — Machine A activates
         machA.classList.add("active");
         setMsg(messages[1]);
         setStep(30, "Mesin A");
         await animateProgress(progA, 0, 100, 1400);
-
-        // Step 2 — Middle output appears
         machA.classList.remove("active");
         machA.classList.add("done");
         midIcon.style.opacity = "1";
@@ -1689,14 +1885,10 @@
         setMsg(messages[2]);
         setStep(55, "Hasil Antara");
         await delay(800);
-
-        // Step 3 — Machine B activates
         machB.classList.add("active");
         setMsg(messages[3]);
         setStep(75, "Mesin B");
         await animateProgress(progB, 0, 100, 1600);
-
-        // Step 4 — Final output
         machB.classList.remove("active");
         machB.classList.add("done");
         outIcon.style.opacity = "1";
@@ -1704,7 +1896,6 @@
         setTimeout(() => (outIcon.style.transform = "scale(1)"), 300);
         setMsg(messages[4]);
         setStep(100, "Selesai! ✓");
-
         demoRunning = false;
         btn.disabled = false;
         btn.classList.remove("opacity-50", "cursor-not-allowed");
@@ -1723,13 +1914,12 @@
         document.getElementById("progress-b").style.width = "0%";
       }
 
-      // Helper: animate a progress bar
       function animateProgress(el, from, to, duration) {
         return new Promise((resolve) => {
           const start = performance.now();
           function step(now) {
             const t = Math.min((now - start) / duration, 1);
-            const ease = t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t; // easeInOut
+            const ease = t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
             el.style.width = from + (to - from) * ease + "%";
             if (t < 1) requestAnimationFrame(step);
             else resolve();
@@ -1742,10 +1932,8 @@
         return new Promise((r) => setTimeout(r, ms));
       }
 
-      // ════════════════════════════════════════════════════════
-      // SIMULATOR — Section 3
-      // ════════════════════════════════════════════════════════
-      let currentTab = "gof"; // 'gof' or 'fog'
+      // ── SIMULATOR ──
+      let currentTab = "gof";
 
       function switchTab(tab) {
         currentTab = tab;
@@ -1766,12 +1954,13 @@
       }
 
       function getParams() {
-        const a = parseInt(document.getElementById("slider-a").value);
-        const b = parseInt(document.getElementById("slider-b").value);
-        const n = parseInt(document.getElementById("slider-n").value);
-        const c = parseInt(document.getElementById("slider-c").value);
-        const x = parseInt(document.getElementById("slider-x").value);
-        return { a, b, n, c, x };
+        return {
+          a: parseInt(document.getElementById("slider-a").value),
+          b: parseInt(document.getElementById("slider-b").value),
+          n: parseInt(document.getElementById("slider-n").value),
+          c: parseInt(document.getElementById("slider-c").value),
+          x: parseInt(document.getElementById("slider-x").value),
+        };
       }
 
       function f(x, a, b) {
@@ -1797,7 +1986,6 @@
       function updateSimulator() {
         const { a, b, n, c, x } = getParams();
 
-        // Sync display labels
         document.getElementById("val-a").textContent = a;
         document.getElementById("val-b").textContent = b;
         document.getElementById("val-n").textContent = n;
@@ -1811,45 +1999,44 @@
         document.getElementById("fx-display").textContent = `f(x) = ${fLabel}`;
         document.getElementById("gx-display").textContent = `g(x) = ${gLabel}`;
 
-        // Compute both orders
         const fx = f(x, a, b);
         const gx = g(x, n, c);
-        const gof = g(fx, n, c); // g(f(x))
-        const fog = f(gx, a, b); // f(g(x))
+        const gof = g(fx, n, c);
+        const fog = f(gx, a, b);
 
-        // Determine flow based on current tab
         const isGof = currentTab === "gof";
         const mid = isGof ? fx : gx;
         const final = isGof ? gof : fog;
-        const firstFnLabel = isGof ? "f(x)" : "g(x)";
-        const secondFnLabel = isGof ? "g(x)" : "f(x)";
-        const firstFormula = isGof ? fLabel : gLabel;
-        const secondFormula = isGof ? gLabel : fLabel;
-        const intermediateEq = isGof ? `f(${x}) = ${fx}` : `g(${x}) = ${gx}`;
-        const finalLabel = isGof ? `(g∘f)(${x})` : `(f∘g)(${x})`;
-        const modeText = isGof
+
+        document.getElementById("mode-label").textContent = isGof
           ? "Alur: (g ∘ f)(x) — f dieksekusi lebih dulu"
           : "Alur: (f ∘ g)(x) — g dieksekusi lebih dulu";
 
-        document.getElementById("mode-label").textContent = modeText;
-        document.getElementById("first-fn-label").textContent = firstFnLabel;
-        document.getElementById("second-fn-label").textContent = secondFnLabel;
-        document.getElementById("first-fn-formula").textContent = firstFormula;
-        document.getElementById("second-fn-formula").textContent =
-          secondFormula;
-        document.getElementById("intermediate-label").textContent =
-          intermediateEq;
-        document.getElementById("result-label").textContent = finalLabel;
+        document.getElementById("first-fn-label").textContent = isGof
+          ? "f(x)"
+          : "g(x)";
+        document.getElementById("second-fn-label").textContent = isGof
+          ? "g(x)"
+          : "f(x)";
+        document.getElementById("first-fn-formula").textContent = isGof
+          ? fLabel
+          : gLabel;
+        document.getElementById("second-fn-formula").textContent = isGof
+          ? gLabel
+          : fLabel;
+        document.getElementById("intermediate-label").textContent = isGof
+          ? `f(${x}) = ${fx}`
+          : `g(${x}) = ${gx}`;
+        document.getElementById("result-label").textContent = isGof
+          ? `(g∘f)(${x})`
+          : `(f∘g)(${x})`;
 
-        // Update chips
         setChip("chip-x", x, "#0D0D0D");
         setChip("chip-mid", mid, isGof ? "#3B5A82" : "#4C7A61");
         setChip("chip-result", final, "#B85C38");
 
-        // Show hidden flow steps with stagger
         animateFlowSteps();
 
-        // Result panels
         document.getElementById("res1-title").textContent = "(g ∘ f)(x)";
         document.getElementById("res2-title").textContent = "(f ∘ g)(x)";
         document.getElementById("res1-val").textContent = gof;
@@ -1859,7 +2046,6 @@
         document.getElementById("res2-formula").textContent =
           `f(g(${x})) = f(${gx}) = ${fog}`;
 
-        // Equal or not
         const notEqBanner = document.getElementById("not-equal-banner");
         const eqBanner = document.getElementById("equal-banner");
         if (gof === fog) {
@@ -1877,36 +2063,42 @@
         el.textContent = val;
         el.style.background = bg;
         el.classList.remove("glowing");
-        void el.offsetWidth; // reflow
+        void el.offsetWidth;
         el.classList.add("glowing");
       }
 
       function animateFlowSteps() {
-        const ids = ["flow-2", "flow-arr3", "flow-3", "flow-arr4", "flow-4"];
+        const ids = [
+          "flow-2",
+          "flow-arr2-m",
+          "flow-arr3",
+          "flow-arr3-m",
+          "flow-3",
+          "flow-arr4",
+          "flow-arr4-m",
+          "flow-4",
+        ];
         ids.forEach((id, i) => {
           const el = document.getElementById(id);
+          if (!el) return;
           el.classList.remove("show");
-          setTimeout(() => el.classList.add("show"), 100 + i * 120);
+          setTimeout(() => el.classList.add("show"), 100 + i * 100);
         });
       }
 
-      // Init simulator on load
       window.addEventListener("DOMContentLoaded", () => {
         updateSimulator();
         renderQuiz();
       });
 
-      // ════════════════════════════════════════════════════════
-      // QUIZ — Section 4
-      // ════════════════════════════════════════════════════════
+      // ── QUIZ ──
       const quizData = [
         {
           q: "Diketahui f(x) = 3x − 1 dan g(x) = x + 4. Berapakah nilai (g ∘ f)(2)?",
           hint: "Hitung f(2) dulu, lalu masukkan hasilnya ke g.",
           options: ["8", "9", "10", "11"],
-          answer: 2, // index 2 = "10"
-          explain:
-            "f(2) = 3(2)−1 = 5, lalu g(5) = 5+4 = 9... eh, g(5) = 9? Coba cek ulang: f(2)=5, g(5)=5+4=9. Jawaban 9.",
+          answer: 1,
+          explain: "f(2) = 3(2)−1 = 5, lalu g(5) = 5+4 = 9. Jawaban: 9.",
         },
         {
           q: "Jika f(x) = x² dan g(x) = 2x + 1, manakah yang benar?",
@@ -1917,7 +2109,7 @@
             "(g∘f)(3) = 49, (f∘g)(3) = 19",
             "Tidak bisa dihitung",
           ],
-          answer: 1, // index 1
+          answer: 1,
           explain:
             "g(f(3)) = g(9) = 2(9)+1 = 19. f(g(3)) = f(7) = 7² = 49. Jadi (g∘f)(3)=19 dan (f∘g)(3)=49.",
         },
@@ -1936,9 +2128,6 @@
         },
       ];
 
-      // Fix quiz answer for question 0
-      quizData[0].answer = 1; // g(f(2)) = g(5) = 9 → index 1
-
       let quizAnswers = [];
       let quizSubmitted = false;
 
@@ -1953,35 +2142,34 @@
           card.className =
             "reveal bg-white border border-paper-cool rounded-2xl overflow-hidden";
           card.innerHTML = `
-          <div class="p-6 sm:p-8">
-            <div class="flex items-start gap-4 mb-5">
-              <span class="flex-shrink-0 w-7 h-7 rounded-lg bg-paper-warm border border-paper-cool flex items-center justify-center font-display font-700 text-sm">${qi + 1}</span>
-              <p class="font-medium text-ink leading-relaxed">${q.q}</p>
+            <div class="p-5 sm:p-8 quiz-card-inner">
+              <div class="flex items-start gap-3 sm:gap-4 mb-5">
+                <span class="flex-shrink-0 w-7 h-7 rounded-lg bg-paper-warm border border-paper-cool flex items-center justify-center font-display font-700 text-sm">${qi + 1}</span>
+                <p class="font-medium text-ink leading-relaxed text-sm sm:text-base">${q.q}</p>
+              </div>
+              <div class="text-xs text-ink/40 mb-4 flex items-center gap-1.5">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/><path d="M6 5v3M6 3.5v.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+                Petunjuk: ${q.hint}
+              </div>
+              <div class="space-y-2" id="options-${qi}">
+                ${q.options
+                  .map(
+                    (opt, oi) => `
+                  <button onclick="selectAnswer(${qi},${oi})" id="opt-${qi}-${oi}"
+                    class="quiz-opt w-full text-left px-4 py-3 rounded-xl border border-paper-cool bg-paper-warm hover:border-ink/20 hover:bg-white transition-all text-sm font-medium text-ink/70 flex items-center gap-3">
+                    <span class="w-5 h-5 rounded-full border border-current flex-shrink-0 flex items-center justify-center text-xs" id="circle-${qi}-${oi}"></span>
+                    <span class="math-display">${opt}</span>
+                  </button>
+                `,
+                  )
+                  .join("")}
+              </div>
+              <div id="explain-${qi}" class="hidden mt-4 callout text-sm text-ink/70 leading-relaxed math-display"></div>
             </div>
-            <div class="text-xs text-ink/40 mb-4 flex items-center gap-1.5">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/><path d="M6 5v3M6 3.5v.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-              Petunjuk: ${q.hint}
-            </div>
-            <div class="space-y-2" id="options-${qi}">
-              ${q.options
-                .map(
-                  (opt, oi) => `
-                <button onclick="selectAnswer(${qi},${oi})" id="opt-${qi}-${oi}"
-                  class="quiz-opt w-full text-left px-4 py-3 rounded-xl border border-paper-cool bg-paper-warm hover:border-ink/20 hover:bg-white transition-all text-sm font-medium text-ink/70 flex items-center gap-3">
-                  <span class="w-5 h-5 rounded-full border border-current flex-shrink-0 flex items-center justify-center text-xs" id="circle-${qi}-${oi}"></span>
-                  <span class="math-display">${opt}</span>
-                </button>
-              `,
-                )
-                .join("")}
-            </div>
-            <div id="explain-${qi}" class="hidden mt-4 callout text-sm text-ink/70 leading-relaxed math-display"></div>
-          </div>
-        `;
+          `;
           container.appendChild(card);
         });
 
-        // Submit button
         const submitBtn = document.createElement("button");
         submitBtn.id = "submit-quiz";
         submitBtn.className =
@@ -1990,7 +2178,6 @@
         submitBtn.onclick = submitQuiz;
         container.appendChild(submitBtn);
 
-        // Re-observe reveal elements
         document
           .querySelectorAll(".reveal:not(.visible)")
           .forEach((el) => revealObserver.observe(el));
@@ -1999,8 +2186,6 @@
       function selectAnswer(qi, oi) {
         if (quizSubmitted) return;
         quizAnswers[qi] = oi;
-
-        // Update option styling
         quizData[qi].options.forEach((_, i) => {
           const btn = document.getElementById(`opt-${qi}-${i}`);
           const circle = document.getElementById(`circle-${qi}-${i}`);
@@ -2038,12 +2223,10 @@
           const isRight = chosen === correct;
           if (isRight) score++;
 
-          // Style options
           quizData[qi].options.forEach((_, oi) => {
             const btn = document.getElementById(`opt-${qi}-${oi}`);
             const circle = document.getElementById(`circle-${qi}-${oi}`);
             btn.disabled = true;
-
             if (oi === correct) {
               btn.className =
                 "quiz-opt w-full text-left px-4 py-3 rounded-xl border bg-sage-light border-sage text-sage-dark transition-all text-sm font-medium flex items-center gap-3";
@@ -2058,18 +2241,12 @@
             }
           });
 
-          // Show explanation
           const explainEl = document.getElementById(`explain-${qi}`);
           explainEl.classList.remove("hidden");
           explainEl.innerHTML = `<strong>${isRight ? "✅ Benar!" : "❌ Belum tepat."}</strong> ${q.explain}`;
-          explainEl.classList.toggle("callout", true);
-          if (!isRight) {
-            explainEl.classList.add("amber");
-            explainEl.classList.remove("border-l-sage", "bg-sage-light");
-          }
+          if (!isRight) explainEl.classList.add("amber");
         });
 
-        // Show result
         document.getElementById("submit-quiz").remove();
         const resultEl = document.getElementById("quiz-result");
         resultEl.classList.remove("hidden");
@@ -2092,6 +2269,14 @@
         document.getElementById("quiz-result").classList.add("hidden");
         renderQuiz();
       }
+
+      window.addEventListener("scroll", () => {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+
+        const percent = (window.scrollY / max) * 100;
+
+        document.getElementById("pageProgress").style.width = percent + "%";
+      });
     </script>
   </body>
 </html>
